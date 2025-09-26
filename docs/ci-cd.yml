@@ -1,0 +1,20 @@
+# CI/CD Pipeline with GitHub Actions
+
+This project uses GitHub Actions for continuous integration and deployment.
+
+## Workflow Location
+- File: .github/workflows/deploy.yml
+
+## Triggers
+- Runs on every push to the main branch
+- Runs on every Pull Request
+
+## Jobs
+### 1. build
+- *Checkout repo*
+- *Set up Docker build environment*
+- *Build Docker image* with tag: auryn:<GITHUB_SHA>
+
+## Verify
+- Go to GitHub → Actions tab
+- Check the workflow runs whenever you push or create a PR
