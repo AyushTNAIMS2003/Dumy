@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "backend.fullname" . }}-test-connection"
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: curl
+          image: curlimages/curl:7.88.1
+          command: ["sh", "-c", "curl -f http://{{ include "backend.fullname" . }}:{{ .Values.service.port }}/ || exit 1"]
+      restartPolicy: Never
